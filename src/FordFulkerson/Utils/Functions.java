@@ -75,10 +75,12 @@ public class Functions {
                 // int capacity = e.capacity;
 
                 // Relax edges
-                if(distances.get(v) > distances.get(u) + 1){
-                    distances.put(v, distances.get(u)+1);
-                    parents.put(v, u);
-                    queue.offer(v);
+                if(e.flow < e.capacity){
+                    if(distances.get(v) > distances.get(u) + 1){
+                        distances.put(v, distances.get(u)+1);
+                        parents.put(v, u);
+                        queue.offer(v);
+                    }
                 }
             }
         }
@@ -134,10 +136,29 @@ public class Functions {
 
         Map<Vertex, List<Edge>> residualGraph = generateResidualGraph(graph);
         List<Vertex> augmentingPath = dijkastra(residualGraph, source, sink);
+
+        if (augmentingPath != null) {
+            System.out.print("Augmenting path: ");
+            for (Vertex v : augmentingPath) {
+                System.out.print(v.id + "->");
+            }
+        } else {
+            System.out.println("No augmenting path found.");
+        }
+
 //        System.out.println("Augmenting path : "+ augmentingPath);
         // printGraph(residualGraph);
         while(augmentingPath != null && augmentingPath.size() > 1){
             int residualCapacity = Integer.MAX_VALUE;
+
+//            if (augmentingPath != null) {
+//                System.out.print("Augmenting path: ");
+//                for (Vertex v : augmentingPath) {
+//                    System.out.print(v.id + "->");
+//                }
+//            } else {
+//                System.out.println("No augmenting path found.");
+//            }
 
             for(int i=0; i < augmentingPath.size()-1; i++){
                 Vertex u = augmentingPath.get(i);
@@ -145,13 +166,13 @@ public class Functions {
 
                 for(Edge e : residualGraph.get(u)){
                     if(e.dest == v){
-                        residualCapacity = Math.min(residualCapacity, e.capacity);
+                        residualCapacity = Math.min(residualCapacity, e.capacity-e.flow);
                         break;
                     }
                 }
             }
 
-            System.out.println("Residual Capacity : "+ residualCapacity);
+//            System.out.println("Residual Capacity : "+ residualCapacity);
 
             // update capacities for residual graph based on residual capacity
             for(int i=0; i < augmentingPath.size()-1; i++){
@@ -182,6 +203,7 @@ public class Functions {
 
             maxFlow += residualCapacity;
 
+            residualGraph = generateResidualGraph(graph);
             augmentingPath = dijkastra(residualGraph, source, sink);
 
         }

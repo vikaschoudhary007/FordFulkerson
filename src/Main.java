@@ -13,15 +13,15 @@ import static FordFulkerson.Utils.Functions.findMaxFlow;
 public class Main {
 
     public static void main(String[] args) {
-        int n = 100;
-        double r = 0.2;
+        int n = 20;
+        double r = 0.4;
         int upperCap = 10;
 
         Functions functions = new Functions();
 
         // Generate source sink graph
         /******************************** Generate Graph ***********************************************/
-
+//
 //        Graph graph = new Graph();
 //        graph.generateSinkSourceGraph(n, r, upperCap);
 //        graph.printGraph(graph.graph);
@@ -54,19 +54,21 @@ public class Main {
         System.out.println("Source : "+ source.id+" Sink : "+ sink.id);
         graph.saveToCSV("graph2.csv", graph.graph, source, sink);
 
-        /******************************************************************************************/
-        List<Vertex> augmentingPath = functions.dijkastra(graph.graph, source, sink);
-        if (augmentingPath != null) {
-            System.out.print("Augmenting path: ");
-            for (Vertex v : augmentingPath) {
-                System.out.print(v.id + "->");
-            }
-        } else {
-            System.out.println("No augmenting path found.");
-        }
+       /******************************************************************************************/
+//        List<Vertex> augmentingPath = functions.dijkastra(graph.graph, source, sink);
+//        if (augmentingPath != null) {
+//            System.out.print("Augmenting path: ");
+//            for (Vertex v : augmentingPath) {
+//                System.out.print(v.id + "->");
+//            }
+//        } else {
+//            System.out.println("No augmenting path found.");
+//        }
 
          int maxFlow = findMaxFlow(graph.graph, source, sink);
          System.out.println("Maximum flow is : "+ maxFlow);
+
+//        graph.printGraph(graph.graph);
 
     }
 }
