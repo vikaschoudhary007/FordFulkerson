@@ -4,6 +4,8 @@ import FordFulkerson.Graph.Result;
 import FordFulkerson.Graph.Vertex;
 import FordFulkerson.Utils.DFSLike;
 import FordFulkerson.Utils.Functions;
+import FordFulkerson.Utils.MaxCap;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,7 @@ public class Main {
 
         Functions functions = new Functions();
         DFSLike DFSLike = new DFSLike();
+        MaxCap MaxCap = new MaxCap();
 
         // Generate source sink graph
         /******************************** Generate Graph ***********************************************/
@@ -71,10 +74,17 @@ public class Main {
 
         /*****************************************************************************************/
         System.out.println("**********************************************************************");
-        Result result2 = DFSLike.dfsLikeMaxFlow(graph.graph, source, sink, bfsLength);
-        result2.setTotalEdges(numberOfEdgesInGraph);
-        Result.printResult(result2);
 
+//        Result result2 = DFSLike.dfsLikeMaxFlow(graph.graph, source, sink, bfsLength);
+//        result2.setTotalEdges(numberOfEdgesInGraph);
+//        Result.printResult(result2);
+
+        /*****************************************************************************************/
+        System.out.println("**********************************************************************");
+
+        Result result3 = MaxCap.maxCapMaxFlow(graph.graph, source, sink, bfsLength);
+        result3.setTotalEdges(numberOfEdgesInGraph);
+        Result.printResult(result3);
 
 
        /******************************************************************************************/
