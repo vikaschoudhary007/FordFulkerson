@@ -1,6 +1,11 @@
-# FordFulkerson
+# Project Description 
+***
+This project implements multiple algorithms to find an augmenting path for the Ford-Fulkerson maximum flow algorithm and study their performances on random source-sink networks. The algorithms used here for finding augmenting paths are mostly different variants of Dijkastra’s Algorithm.
+The project involves creating a random source-sink graph generator and implementing four augmenting path algorithms.
 
-# src
+# Augmenting Path Algorithms 
+
+# Folder Structure
 
 * [FordFulkerson/](./src/FordFulkerson)
   * [Graph/](./src/FordFulkerson/Graph)
@@ -14,3 +19,4 @@
     * [MaxCap.java](./src/FordFulkerson/Utils/MaxCap.java)
     * [RandomSearch.java](./src/FordFulkerson/Utils/RandomSearch.java)
 * [Main.java](./src/Main.java)
+
