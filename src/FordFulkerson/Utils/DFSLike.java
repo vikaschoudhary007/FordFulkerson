@@ -45,7 +45,7 @@ public class DFSLike {
     //////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////  /* Shortest Augmenting path :: Dijkastra Algorithm *//////////////////////
 
-    public static List<Vertex> dijkastraDFS(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink){
+    public static List<Vertex> dijkstraDFS(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink){
 
         Map<Vertex, Integer> distances = new HashMap<>();
         PriorityQueue<Vertex> queue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
@@ -146,23 +146,13 @@ public class DFSLike {
         Result result = new Result(0, 0, 0, 0);
 
         Map<Vertex, List<Edge>> residualGraph = generateResidualGraph(graph);
-        List<Vertex> augmentingPath = dijkastraDFS(residualGraph, source, sink);
+        List<Vertex> augmentingPath = dijkstraDFS(residualGraph, source, sink);
 
         while(augmentingPath != null && augmentingPath.size() > 1){
             int residualCapacity = Integer.MAX_VALUE;
 
-//            printResidualGraph(residualGraph);
             result.setNumberOfAugmentingPath(result.getNumberOfAugmentingPath() + 1);
             length_list.add(augmentingPath.size());
-            if (augmentingPath != null) {
-                System.out.print("Augmenting path : ");
-                for (Vertex v : augmentingPath) {
-                    System.out.print(v.id + "->");
-                }
-                System.out.print("\n");
-            } else {
-                System.out.println("No augmenting path found.");
-            }
 
             for(int i=0; i < augmentingPath.size()-1; i++){
                 Vertex u = augmentingPath.get(i);
@@ -176,7 +166,6 @@ public class DFSLike {
                 }
             }
 
-            System.out.println("Residual Capacity : " + residualCapacity);
 
             // update capacities for residual graph based on residual capacity
             for(int i=0; i < augmentingPath.size()-1; i++){
@@ -195,7 +184,7 @@ public class DFSLike {
             maxFlow += residualCapacity;
 
             residualGraph = generateResidualGraph(graph);
-            augmentingPath = dijkastraDFS(residualGraph, source, sink);
+            augmentingPath = dijkstraDFS(residualGraph, source, sink);
 
         }
 

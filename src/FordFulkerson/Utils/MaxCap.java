@@ -41,7 +41,7 @@ public class MaxCap {
     //////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////  /* Shortest Augmenting path :: Dijkastra Algorithm *//////////////////////
 
-    public static List<Vertex> dijkastraMaxCap(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink){
+    public static List<Vertex> dijkstraMaxCap(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink){
 
         Map<Vertex, Integer> distances = new HashMap<>();
         PriorityQueue<Vertex> queue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
@@ -138,22 +138,13 @@ public class MaxCap {
         Result result = new Result(0, 0, 0, 0);
 
         Map<Vertex, List<Edge>> residualGraph = generateResidualGraph(graph);
-        List<Vertex> augmentingPath = dijkastraMaxCap(residualGraph, source, sink);
+        List<Vertex> augmentingPath = dijkstraMaxCap(residualGraph, source, sink);
 
         while(augmentingPath != null && augmentingPath.size() > 1){
             int residualCapacity = Integer.MAX_VALUE;
 
             result.setNumberOfAugmentingPath(result.getNumberOfAugmentingPath() + 1);
             length_list.add(augmentingPath.size());
-            if (augmentingPath != null) {
-                System.out.print("Augmenting path : ");
-                for (Vertex v : augmentingPath) {
-                    System.out.print(v.id + "->");
-                }
-                System.out.print("\n");
-            } else {
-                System.out.println("No augmenting path found.");
-            }
 
             for(int i=0; i < augmentingPath.size()-1; i++){
                 Vertex u = augmentingPath.get(i);
@@ -166,8 +157,6 @@ public class MaxCap {
                     }
                 }
             }
-
-            System.out.println("Residual Capacity : " + residualCapacity);
 
             // update capacities for residual graph based on residual capacity
             for(int i=0; i < augmentingPath.size()-1; i++){
@@ -199,7 +188,7 @@ public class MaxCap {
             maxFlow += residualCapacity;
 
             residualGraph = generateResidualGraph(graph);
-            augmentingPath = dijkastraMaxCap(residualGraph, source, sink);
+            augmentingPath = dijkstraMaxCap(residualGraph, source, sink);
 
         }
 
