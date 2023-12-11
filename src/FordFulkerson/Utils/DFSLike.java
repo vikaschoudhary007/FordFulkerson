@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class Functions {
+public class DFSLike {
     ///////////////////// BREADTH-FIRST SEARCH //////////////////////////////////
 
     public Map<Vertex, Integer> BFS(Map<Vertex, List<Edge>> graph, Vertex source){
@@ -45,12 +45,14 @@ public class Functions {
     //////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////  /* Shortest Augmenting path :: Dijkastra Algorithm *//////////////////////
 
-    public static List<Vertex> dijkastra(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink){
+    public static List<Vertex> dijkastraDFS(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink){
 
         Map<Vertex, Integer> distances = new HashMap<>();
         PriorityQueue<Vertex> queue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
         Map<Vertex, Vertex> parents = new HashMap<>();
         Set<Vertex> visited = new HashSet<>();
+
+        int counter = 0;
 
         // initialize the queue
         for(Vertex u : graph.keySet()){
@@ -80,8 +82,8 @@ public class Functions {
 
                 // Relax edges
                 if(e.flow < e.capacity ){
-                    if(distances.get(v) > distances.get(u) + 1){
-                        distances.put(v, distances.get(u)+1);
+                    if(distances.get(v) == Integer.MAX_VALUE){
+                        distances.put(v, counter--);
                         parents.put(v, u);
                         queue.offer(v);
                     }
@@ -134,21 +136,8 @@ public class Functions {
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    public static void printResidualGraph(Map<Vertex, List<Edge>> graph) {
-        for (Map.Entry<Vertex, List<Edge>> entry : graph.entrySet()) {
-            int vertex = entry.getKey().id;
-            List<Edge> edges = entry.getValue();
-
-            System.out.print("Vertex " + vertex + ": ");
-            for (Edge edge : edges) {
-                System.out.print("(" + edge.dest.id + ", " + edge.capacity + ", " + edge.flow + ") ");
-            }
-            System.out.println();
-        }
-    }
-
     /********************* FIND MAX FLOW *****************************************/
-    public static Result findMaxFlow(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink, int bfsLength){
+    public Result dfsLikeMaxFlow(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink, int bfsLength){
 
         int maxFlow = 0;
 
@@ -157,7 +146,7 @@ public class Functions {
         Result result = new Result(0, 0, 0, 0);
 
         Map<Vertex, List<Edge>> residualGraph = generateResidualGraph(graph);
-        List<Vertex> augmentingPath = dijkastra(residualGraph, source, sink);
+        List<Vertex> augmentingPath = dijkastraDFS(residualGraph, source, sink);
 
         while(augmentingPath != null && augmentingPath.size() > 1){
             int residualCapacity = Integer.MAX_VALUE;
@@ -219,7 +208,7 @@ public class Functions {
             maxFlow += residualCapacity;
 
             residualGraph = generateResidualGraph(graph);
-            augmentingPath = dijkastra(residualGraph, source, sink);
+            augmentingPath = dijkastraDFS(residualGraph, source, sink);
 
         }
 
@@ -239,61 +228,5 @@ public class Functions {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-
-    public Map<Vertex, List<Edge>> readGraphFromCSV(String filename, Graph graph){
-
-        try(BufferedReader reader = new BufferedReader(new FileReader(filename))){
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-
-                if(!parts[0].equals("Source") && !parts[0].equals("Sink") && !parts[0].equals("BFSLength")){
-                    int u_id = Integer.parseInt(parts[0]);
-                    double u_x = Double.parseDouble(parts[1]);
-                    double u_y = Double.parseDouble(parts[2]);
-                    int v_id = Integer.parseInt(parts[3]);
-                    double v_x = Double.parseDouble(parts[4]);
-                    double v_y = Double.parseDouble(parts[5]);
-                    int capacity = Integer.parseInt(parts[6]);
-                    int flow = Integer.parseInt(parts[7]);
-
-                    Vertex u = new Vertex(u_id, u_x, u_y);
-                    Vertex v = new Vertex(v_id, v_x, v_y);
-
-                   if(!graph.graph.containsKey(u)){
-                       graph.addVertex(u);
-                   }
-
-                    Edge edge = new Edge(v, capacity, flow);
-                    if(v_id != -1){
-                        graph.graph.get(u).add(edge);
-                    }
-
-                }
-                else if(parts[0].equals("Source")){
-                    int s_id = Integer.parseInt(parts[1]);
-                    double s_x = Double.parseDouble(parts[2]);
-                    double s_y = Double.parseDouble(parts[3]);
-                    Vertex source = new Vertex(s_id, s_x, s_y);
-                    graph.setSource(source);
-                }
-                else if(parts[0].equals("Sink")){
-                    int sink_id = Integer.parseInt(parts[1]);
-                    double sink_x = Double.parseDouble(parts[2]);
-                    double sink_y = Double.parseDouble(parts[3]);
-                    Vertex sink = new Vertex(sink_id, sink_x, sink_y);
-                    graph.setSink(sink);
-                }
-                else if(parts[0].equals("BFSLength")){
-                    graph.setBFSLength(Integer.parseInt(parts[1]));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return graph.graph;
-    }
 
 }

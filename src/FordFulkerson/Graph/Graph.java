@@ -7,6 +7,8 @@ public class Graph {
     public Vertex source;
     public Vertex sink;
 
+    public int BFSLength;
+
     public Graph() {
         this.graph = new HashMap<>();
     }
@@ -29,6 +31,14 @@ public class Graph {
 
     public void setSink(Vertex sink) {
         this.sink = sink;
+    }
+
+    public int getBFSLength() {
+        return BFSLength;
+    }
+
+    public void setBFSLength(int BFSLength) {
+        this.BFSLength = BFSLength;
     }
 
     public void addEdge(Vertex u, Vertex v, int capacity, int flow) {
@@ -91,7 +101,21 @@ public class Graph {
         }
     }
 
-    public void saveToCSV(String filename, Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink){
+    public int getNumberOfEdges(Map<Vertex, List<Edge>> graph) {
+        int count = 0;
+        for (Map.Entry<Vertex, List<Edge>> entry : graph.entrySet()) {
+            int vertex = entry.getKey().id;
+            List<Edge> edges = entry.getValue();
+
+            for (Edge edge : edges) {
+                count += 1;
+            }
+        }
+
+        return count;
+    }
+
+    public void saveToCSV(String filename, Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink, int BFSLength){
         try(PrintWriter writer = new PrintWriter(new File(filename))){
             StringBuilder sb = new StringBuilder();
             for(Map.Entry<Vertex, List<Edge>> entry : graph.entrySet()){
@@ -112,6 +136,7 @@ public class Graph {
             }
             sb.append("Source").append(",").append(source.id).append(",").append(source.x).append(",").append(source.y).append("\n");
             sb.append("Sink").append(",").append(sink.id).append(",").append(sink.x).append(",").append(sink.y).append("\n");
+            sb.append("BFSLength").append(",").append(BFSLength).append("\n");
 
             writer.write(sb.toString());
 
