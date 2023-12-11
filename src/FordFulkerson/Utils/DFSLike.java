@@ -190,19 +190,6 @@ public class DFSLike {
                     }
                 }
 
-                for(Edge e : residualGraph.get(u)){
-                    if(e.dest == v){
-                        e.capacity -= residualCapacity;
-                        break;
-                    }
-                }
-
-                for(Edge bEdge : residualGraph.get(v)){
-                    if(bEdge.dest == u){
-                        bEdge.capacity += residualCapacity;
-                        break;
-                    }
-                }
             }
 
             maxFlow += residualCapacity;

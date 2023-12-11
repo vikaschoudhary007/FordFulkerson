@@ -51,7 +51,7 @@ public class Result {
     public static void printResult(Result result) {
         System.out.println("Number of Augmenting Paths: " + result.getNumberOfAugmentingPath());
         System.out.println("Mean Length: " + result.getMeanLength());
-        System.out.println("Maximum Path Length: " + result.getMpl());
+        System.out.println("Mean Proportional Length: " + result.getMpl());
         System.out.println("Total Edges: " + result.getTotalEdges());
     }
 

@@ -5,6 +5,7 @@ import FordFulkerson.Graph.Vertex;
 import FordFulkerson.Utils.DFSLike;
 import FordFulkerson.Utils.Functions;
 import FordFulkerson.Utils.MaxCap;
+import FordFulkerson.Utils.RandomSearch;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,10 +25,11 @@ public class Main {
         Functions functions = new Functions();
         DFSLike DFSLike = new DFSLike();
         MaxCap MaxCap = new MaxCap();
+        RandomSearch RandomSearch = new RandomSearch();
 
         // Generate source sink graph
         /******************************** Generate Graph ***********************************************/
-
+//
 //        Graph graph = new Graph();
 //        graph.generateSinkSourceGraph(n, r, upperCap);
 //        graph.printGraph(graph.graph);
@@ -82,12 +84,19 @@ public class Main {
         /*****************************************************************************************/
         System.out.println("**********************************************************************");
 
-        Result result3 = MaxCap.maxCapMaxFlow(graph.graph, source, sink, bfsLength);
-        result3.setTotalEdges(numberOfEdgesInGraph);
-        Result.printResult(result3);
+//        Result result3 = MaxCap.maxCapMaxFlow(graph.graph, source, sink, bfsLength);
+//        result3.setTotalEdges(numberOfEdgesInGraph);
+//        Result.printResult(result3);
+
+        System.out.println("**********************************************************************");
+
+        Result result4 = RandomSearch.randomMaxFlow(graph.graph, source, sink, bfsLength);
+        result4.setTotalEdges(numberOfEdgesInGraph);
+        Result.printResult(result4);
 
 
-       /******************************************************************************************/
+
+        /******************************************************************************************/
 //        List<Vertex> augmentingPath = DFSLike.dijkastraDFS(graph.graph, source, sink);
 //        if (augmentingPath != null) {
 //            System.out.print("Augmenting path: ");

@@ -43,18 +43,18 @@ public class MaxCap {
 
     public static List<Vertex> dijkastraMaxCap(Map<Vertex, List<Edge>> graph, Vertex source, Vertex sink){
 
-        Map<Vertex, Integer> capacities = new HashMap<>();
-        PriorityQueue<Vertex> queue = new PriorityQueue<>(Comparator.comparingInt(capacities::get));
+        Map<Vertex, Integer> distances = new HashMap<>();
+        PriorityQueue<Vertex> queue = new PriorityQueue<>(Comparator.comparingInt(distances::get));
         Map<Vertex, Vertex> parents = new HashMap<>();
         Set<Vertex> visited = new HashSet<>();
 
         // initialize the queue
         for(Vertex u : graph.keySet()){
-            capacities.put(u, Integer.MIN_VALUE);
+            distances.put(u, Integer.MIN_VALUE);
             parents.put(u, null);
         }
 
-        capacities.put(source, Integer.MAX_VALUE);
+        distances.put(source, Integer.MAX_VALUE);
         queue.offer(source);
 
         while (!queue.isEmpty()) {
@@ -75,8 +75,8 @@ public class MaxCap {
                 // int capacity = e.capacity;
 
                 // Relax edges
-                if(e.flow < e.capacity && capacities.get(v) < Math.min(capacities.get(u), e.capacity-e.flow)){
-                    capacities.put(v, Math.min(capacities.get(u), e.capacity-e.flow));
+                if(e.flow < e.capacity && distances.get(v) < Math.min(distances.get(u), e.capacity-e.flow)){
+                    distances.put(v, Math.min(distances.get(u), e.capacity-e.flow));
                     parents.put(v, u);
                     queue.offer(v);
                 }
@@ -92,7 +92,7 @@ public class MaxCap {
         }
         Collections.reverse(augmentingPath);
 
-        return capacities.get(sink) > Integer.MIN_VALUE ? augmentingPath : null;
+        return augmentingPath.size() > 1 ? augmentingPath : null;
     }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
