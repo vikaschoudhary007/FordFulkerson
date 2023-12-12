@@ -31,3 +31,6 @@ The project involves creating a random source-sink graph generator and implement
 
 1. To run this program we need to execute the Main.java file, this will start the command line execution of program. The first step is to choose wether you want to generate     a graph or run the Ford-Fulkerson algorithm on a already generated graph.
    * Enter 1 for Graph Generation and 2 for executing Ford-Fulkerson.
+   ** For Graph Generation : Enter the graph parameters n, r, upperCap and a CSV file will be generated where ASCII encodings of source-sink network is stored.
+   ** Name of this file will be - graph_n_r_upperCap.csv
+2. After choosing the appropriate operation enter the graph parameters n, r, 
