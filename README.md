@@ -4,7 +4,7 @@ This project implements multiple algorithms to find an augmenting path for the F
 The project involves creating a random source-sink graph generator and implementing four augmenting path algorithms.
 
 ## Augmenting Path Algorithms 
-1. [Shortest Augmenting Path (SAP)](#For this a modified version of Dijkstra algorithm is used which implements the algorithm using unit capacity for each edge, effectively the same as running BFS.)
+1. Shortest Augmenting Path (SAP) :For this a modified version of Dijkstra algorithm is used which implements the algorithm using unit capacity for each edge, effectively the same as running BFS.
 
 ## Folder Structure
 
