@@ -42,7 +42,7 @@ public class Main {
         graph.setSink(sink);
         graph.setBFSLength(bfsLength);
 
-        graph.saveToCSV("graph_"+n+"_"+r+"_"+upperCap+".csv", graph.graph, source, sink, bfsLength);
+        graph.saveToCSV("/graph_"+n+"_"+r+"_"+upperCap+".csv", graph.graph, source, sink, bfsLength);
     }
 
     public static void readGraphAndCallMax(int n, double r, int upperCap){
@@ -134,96 +134,7 @@ public class Main {
                     readGraphAndCallMax(n2,r2,upperCap2);
             }
 
-
         }
-
-//        Graph graph = new Graph();
-//        graph.generateSinkSourceGraph(n, r, upperCap);
-//        graph.printGraph(graph.graph);
-//
-//        List<Vertex> vertices = graph.graph.keySet().stream().collect(Collectors.toList());
-//        Vertex source = vertices.isEmpty() ? null : vertices.get(ThreadLocalRandom.current().nextInt(vertices.size()));
-//        Vertex sink = null;
-//        int bfsLength = 0;
-//
-//        if(source != null){
-//            Map<Vertex, Integer> distances = functions.BFS(graph.graph, source);
-//            sink = Collections.max(distances.entrySet(), Map.Entry.comparingByValue()).getKey();
-//            bfsLength = Collections.max(distances.entrySet(), Map.Entry.comparingByValue()).getValue();
-//            System.out.println("Source node : "+ source.id);
-//            System.out.println("Sink node : "+ sink.id);
-//            System.out.println("BFS Length : "+ bfsLength);
-//        }
-//
-//        graph.setSource(source);
-//        graph.setSink(sink);
-//        graph.setBFSLength(bfsLength);
-//
-//        graph.saveToCSV("graph.csv", graph.graph, source, sink, bfsLength);
-
-
-        /******************************** Read Graph ***********************************************/
-//        Graph graph = new Graph();
-//        graph.graph = functions.readGraphFromCSV("graph.csv", graph);
-//
-//        Vertex source = graph.getSource();
-//        Vertex sink = graph.getSink();
-//        int bfsLength = graph.getBFSLength();
-//
-//        System.out.println("Source : "+ source.id+" Sink : "+ sink.id);
-//        int numberOfEdgesInGraph = graph.getNumberOfEdges(graph.graph);
-
-
-
-//        graph.saveToCSV("graph2.csv", graph.graph, source, sink, bfsLength);
-//        System.out.println("BFSLength from CSV Graph : " + bfsLength);
-
-//        Result result1 = findMaxFlow(graph.graph, source, sink, bfsLength);
-//        result1.setTotalEdges(numberOfEdgesInGraph);
-//        Result.printResult(result1);
-
-
-        /*****************************************************************************************/
-
-//        Result result2 = DFSLike.dfsLikeMaxFlow(graph.graph, source, sink, bfsLength);
-//        result2.setTotalEdges(numberOfEdgesInGraph);
-//        Result.printResult(result2);
-
-        /*****************************************************************************************/
-
-//        Result result3 = MaxCap.maxCapMaxFlow(graph.graph, source, sink, bfsLength);
-//        result3.setTotalEdges(numberOfEdgesInGraph);
-//        Result.printResult(result3);
-
-//        Result result4 = RandomSearch.randomMaxFlow(graph.graph, source, sink, bfsLength);
-//        result4.setTotalEdges(numberOfEdgesInGraph);
-//        Result.printResult(result4);
-//
-
-
-        /******************************************************************************************/
-//        List<Vertex> augmentingPath = DFSLike.dijkstraDFS(graph.graph, source, sink);
-//        if (augmentingPath != null) {
-//            System.out.print("Augmenting path: ");
-//            for (Vertex v : augmentingPath) {
-//                System.out.print(v.id + "->");
-//            }
-//        } else {
-//            System.out.println("No augmenting path found.");
-//        }
-
-//        Scanner sc = new Scanner(System.in);
-//        while(true){
-//            System.out.println("Enter the operation you wanna do :- \n" +
-//                    "1 for (n = 100, r = 0.2, upperCap = 2)\n" +
-//                    "2 for (n = 200, r = 0.2, upperCap = 2)\n" +
-//                    "3 for (n = 100, r = 0.3, upperCap = 2)\n" +
-//                    "4 for (n = 200, r = 0.3, upperCap = 2)\n" +
-//                    "5 for (n = 100, r = 0.2, upperCap = 50)\n" +
-//                    "6 for (n = 200, r = 0.2, upperCap = 50)\n" +
-//                    "7 for (n = 100, r = 0.3, upperCap = 50)\n" +
-//                    "8 for (n = 200, r = 0.3, upperCap = 50)");
-//        }
 
     }
 }
