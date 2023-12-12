@@ -26,3 +26,5 @@ The project involves creating a random source-sink graph generator and implement
     * [RandomSearch.java](./src/FordFulkerson/Utils/RandomSearch.java)
 * [Main.java](./src/Main.java)
 
+
+## Compile & Run
