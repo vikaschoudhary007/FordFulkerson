@@ -30,4 +30,5 @@ The project involves creating a random source-sink graph generator and implement
 ## Compile & Run
 
 1. To run this program we need to execute the Main.java file, this will start the command line execution of program. The first step is to choose wether you want to generate a graph or run the Ford-Fulkerson algorithm on a already generated graph.
+*
 Enter 1 for Graph Generation and 2 for executing Ford-Fulkerson.
