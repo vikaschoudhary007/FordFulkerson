@@ -35,4 +35,10 @@ The project involves creating a random source-sink graph generator and implement
    * Name of this file will be - graph_n_r_upperCap.csv
 2. For Simulation of program(ford-Fulkerson) from already created CSV file, the graph_n_r_upperCap.csv file should be present beforehand.
    * After choosing the appropriate parameters n, r, upperCap and then choose the augmenting path algorithm for execution.
-   * Enter 1 for SAP, 2 for DFS-Like, 3 for MaxCap and 4 for Random
+   * Enter 1 for SAP, 2 for DFS-Like, 3 for MaxCap and 4 for Random.
+3. The output will be a object of Result class which contains the following 4 parameters :-
+   * Paths : the number of augmenting paths required until Ford-Fulkerson completes.
+   * Mean length (ML) : average length (i.e., number of edges) of the augmenting paths.
+   * Mean proportional length (MPL) : the average length of the augmenting path as a fraction of the longest acyclic path from source to sink.
+   * Total edges : the total number of edges in the graph.
+
