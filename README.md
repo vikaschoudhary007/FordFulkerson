@@ -32,7 +32,7 @@ The project involves creating a random source-sink graph generator and implement
 1. To run this program we need to execute the Main.java file, this will start the command line execution of program. The first step is to choose wether you want to generate     a graph or run the Ford-Fulkerson algorithm on a already generated graph.
    * Enter 1 for Graph Generation and 2 for executing Ford-Fulkerson.
    * For Graph Generation : Enter the graph parameters n, r, upperCap and a CSV file will be generated where ASCII encodings of source-sink network is stored.
-   * Name of this file will be - graph_n_r_upperCap.csv
+   * Name of this file will be - <span style="color:green;">graph_n_r_upperCap.csv</span>
 2. For Simulation of program(ford-Fulkerson) from already created CSV file, the graph_n_r_upperCap.csv file should be present beforehand.
    * After choosing the appropriate parameters n, r, upperCap and then choose the augmenting path algorithm for execution.
    * Enter 1 for SAP, 2 for DFS-Like, 3 for MaxCap and 4 for Random.
@@ -42,4 +42,7 @@ The project involves creating a random source-sink graph generator and implement
    * Mean proportional length (MPL) : the average length of the augmenting path as a fraction of the longest acyclic path from source to sink.
    * Total edges : the total number of edges in the graph.
 
-![Output Screenshot](./src/outputSS.png)
+## Sample Output
+
+<img width="617" alt="outputSS" src="https://github.com/vikaschoudhary007/FordFulkerson/assets/52380490/72d1794e-b26b-4d90-9080-42c712308d9c">
+
