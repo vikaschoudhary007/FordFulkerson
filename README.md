@@ -42,4 +42,5 @@ The project involves creating a random source-sink graph generator and implement
    * Mean proportional length (MPL) : the average length of the augmenting path as a fraction of the longest acyclic path from source to sink.
    * Total edges : the total number of edges in the graph.
 
-![Output Screenshot](./outputSS.png)
+<img width="617" alt="outputSS" src="https://github.com/vikaschoudhary007/FordFulkerson/assets/52380490/72d1794e-b26b-4d90-9080-42c712308d9c">
+
