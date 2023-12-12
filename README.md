@@ -51,3 +51,4 @@ The project involves creating a random source-sink graph generator and implement
 
 <img width="617" alt="outputSS" src="https://github.com/vikaschoudhary007/FordFulkerson/assets/52380490/72d1794e-b26b-4d90-9080-42c712308d9c">
 
+# Note - I have created the project in IntelliJ IDE. If possible run the project in IntelliJ IDE so that the compile and run process will be easy.
